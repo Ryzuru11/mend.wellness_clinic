@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:video_player/video_player.dart';
 import 'dart:async'; // Tambahkan ini untuk Timer
 import 'workouts_page.dart'; // Tambahkan ini
+import 'login_page.dart'; // Tambahkan ini
 
 
 // Import halaman Programs dari file terpisah
@@ -33,7 +34,7 @@ class MyApp extends StatelessWidget {
         ),
         scaffoldBackgroundColor: const Color(0xFFF5F5F5), // Latar belakang lebih lembut
       ),
-      home: const MyHomePage(title: 'Mend.Wellness Clinic'),
+      home: const LoginPage(), // <-- Ganti jadi ini
     );
   }
 }
