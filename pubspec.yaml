@@ -75,6 +75,9 @@ flutter:
     - assets/images/gambar2.png
     - assets/images/gambar3.png
     - assets/images/mend_wellnes.png
+    - assets/images/upper_body_performance.jpg
+    - assets/images/lower_body_performance.jpg
+    - assets/images/full_body_performance.jpg
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in
   # the material Icons class.

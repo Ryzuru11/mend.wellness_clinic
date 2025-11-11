@@ -2,13 +2,11 @@
 import 'package:flutter/material.dart';
 import 'package:video_player/video_player.dart';
 import 'dart:async'; // Tambahkan ini untuk Timer
-import 'workouts_page.dart'; // Tambahkan ini
-import 'login_page.dart'; // Tambahkan ini
-import 'profile_page.dart'; // Tambahkan ini
 
-
-// Import halaman Programs dari file terpisah
+// Import halaman dari file terpisah
+import 'login_page.dart';
 import 'programs_page.dart';
+import 'profile_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -35,7 +33,7 @@ class MyApp extends StatelessWidget {
         ),
         scaffoldBackgroundColor: const Color(0xFFF5F5F5), // Latar belakang lebih lembut
       ),
-      home: const LoginPage(), // <-- Ganti jadi ini
+      home: const LoginPage(), // Mulai dari halaman login
     );
   }
 }
@@ -112,7 +110,7 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   // Placeholder data
-  String userName = "yang mulia Hilman";
+  String userName = "Hilman pebrian";
   int programSessions = 0;
   int dailyPrehabSessions = 0;
   int workoutSessions = 0;
@@ -134,7 +132,6 @@ class _MyHomePageState extends State<MyHomePage> {
       videoPath: 'assets/videos/video_latihan.mp4',
       thumbnailPath: 'assets/images/video_placeholder.jpg',
     ),
-    // Tambahkan video lain jika ada
   ];
 
   // Daftar gambar untuk carousel
@@ -176,6 +173,26 @@ class _MyHomePageState extends State<MyHomePage> {
     super.dispose();
   }
 
+  // Fungsi untuk menangani pilihan menu
+  void _onMenuItemSelected(String menuItem) {
+    print('Menu item dipilih: $menuItem');
+    // Tambahkan logika navigasi di sini sesuai kebutuhan Anda
+    switch (menuItem) {
+      case 'Booking':
+        // Navigasi ke halaman booking
+        break;
+      case 'Jadwal':
+        // Navigasi ke halaman jadwal
+        break;
+      case 'Setting':
+        // Navigasi ke halaman setting
+        break;
+      case 'Logout':
+        // Logika logout
+        break;
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     // Filter daftar video berdasarkan pencarian
@@ -187,6 +204,42 @@ class _MyHomePageState extends State<MyHomePage> {
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.title),
+        actions: [
+          PopupMenuButton<String>(
+            icon: const Icon(Icons.menu), // Ikon garis tiga (menu)
+            onSelected: _onMenuItemSelected,
+            itemBuilder: (context) => [
+              const PopupMenuItem(
+                value: 'Booking',
+                child: ListTile(
+                  leading: Icon(Icons.book, color: Color(0xFF3A9D4E)),
+                  title: Text('Booking'),
+                ),
+              ),
+              const PopupMenuItem(
+                value: 'Jadwal',
+                child: ListTile(
+                  leading: Icon(Icons.schedule, color: Color(0xFF3A9D4E)),
+                  title: Text('Jadwal'),
+                ),
+              ),
+              const PopupMenuItem(
+                value: 'Setting',
+                child: ListTile(
+                  leading: Icon(Icons.settings, color: Color(0xFF3A9D4E)),
+                  title: Text('Setting'),
+                ),
+              ),
+              const PopupMenuItem(
+                value: 'Logout',
+                child: ListTile(
+                  leading: Icon(Icons.logout, color: Color(0xFF3A9D4E)),
+                  title: Text('Logout'),
+                ),
+              ),
+            ],
+          ),
+        ],
       ),
       body: SingleChildScrollView(
         child: Padding(
@@ -195,58 +248,57 @@ class _MyHomePageState extends State<MyHomePage> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               // === HEADER SECTION ===
-              // === HEADER SECTION ===
-  Row(
-  children: [
-    // Avatar Placeholder (Bisa diganti dengan foto profil nanti)
-    Container(
-      width: 60,
-      height: 60,
-      decoration: BoxDecoration(
-        color: Colors.grey[300],
-        borderRadius: BorderRadius.circular(12),
-        image: const DecorationImage(
-          image: AssetImage('assets/images/video_placeholder.jpg'), // Bisa diganti dengan avatar user
-          fit: BoxFit.cover,
-        ),
-      ),
-    ),
-    const SizedBox(width: 12),
-    Expanded(
-      child: GestureDetector( // Tambahkan GestureDetector untuk membuatnya bisa diklik
-        onTap: () {
-          // Navigasi ke halaman ProfilePage
-          Navigator.push(
-            context,
-            MaterialPageRoute(builder: (context) => const ProfilePage()),
-          );
-        },
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              "Welcome back,",
-              style: Theme.of(context).textTheme.bodySmall?.copyWith(color: Colors.grey[600]),
-            ),
-            Text(
-              userName, // Nama user
-              style: Theme.of(context).textTheme.headlineSmall?.copyWith(
-                    fontWeight: FontWeight.bold,
-                    color: const Color(0xFF3A9D4E),
+              Row(
+                children: [
+                  // Avatar Placeholder (Bisa diganti dengan foto profil nanti)
+                  Container(
+                    width: 60,
+                    height: 60,
+                    decoration: BoxDecoration(
+                      color: Colors.grey[300],
+                      borderRadius: BorderRadius.circular(12),
+                      image: const DecorationImage(
+                        image: AssetImage('assets/images/video_placeholder.jpg'), // Bisa diganti dengan avatar user
+                        fit: BoxFit.cover,
+                      ),
+                    ),
                   ),
-            ),
-          ],
-        ),
-      ),
-    ),
-    IconButton(
-      icon: const Icon(Icons.notifications_none, color: Color(0xFF3A9D4E)),
-      onPressed: () {
-        print("Notifikasi diklik");
-      },
-    ),
-  ],
-),
+                  const SizedBox(width: 12),
+                  Expanded(
+                    child: GestureDetector( // Tambahkan GestureDetector untuk membuatnya bisa diklik
+                      onTap: () {
+                        // Navigasi ke halaman ProfilePage
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => const ProfilePage()),
+                        );
+                      },
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            "Welcome back,",
+                            style: Theme.of(context).textTheme.bodySmall?.copyWith(color: Colors.grey[600]),
+                          ),
+                          Text(
+                            userName, // Nama user
+                            style: Theme.of(context).textTheme.headlineSmall?.copyWith(
+                                  fontWeight: FontWeight.bold,
+                                  color: const Color(0xFF3A9D4E),
+                                ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                  IconButton(
+                    icon: const Icon(Icons.notifications_none, color: Color(0xFF3A9D4E)),
+                    onPressed: () {
+                      print("Notifikasi diklik");
+                    },
+                  ),
+                ],
+              ),
               const SizedBox(height: 24),
 
               // === CAROUSEL SECTION ===
@@ -481,7 +533,7 @@ class _MyHomePageState extends State<MyHomePage> {
         items: const [
           BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
           BottomNavigationBarItem(icon: Icon(Icons.bar_chart), label: 'Programs'),
-          BottomNavigationBarItem(icon: Icon(Icons.fitness_center), label: 'Workouts'),
+          BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Profile'), // Ganti "Workouts" menjadi "Profile"
         ],
         currentIndex: 0,
         selectedItemColor: const Color(0xFF3A9D4E),
@@ -498,11 +550,12 @@ class _MyHomePageState extends State<MyHomePage> {
               );
               break;
             case 2:
-              Navigator.pushReplacement(
-                  context,
-                  MaterialPageRoute(builder: (context) => const WorkoutsPage()),
-                );
-                break;
+              // Navigasi ke halaman Profile
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const ProfilePage()),
+              );
+              break;
           }
         },
       ),

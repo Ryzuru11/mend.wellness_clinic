@@ -117,6 +117,113 @@ class ProgramsPage extends StatelessWidget {
                   ),
                 ),
               ),
+              const SizedBox(height: 24),
+
+              // === PERFORMANCE SECTION ===
+              const Text(
+                "Performance",
+                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Color(0xFF3A9D4E)),
+              ),
+              const SizedBox(height: 8),
+              Text(
+                "Challenging: Step outside your comfort zone & elevate your body's potential",
+                style: TextStyle(fontSize: 14, color: Colors.grey[600]),
+              ),
+              const SizedBox(height: 16),
+              Container(
+                height: 220,
+                child: ListView.separated(
+                  scrollDirection: Axis.horizontal,
+                  itemCount: 3, // Kita buat 3 card dulu
+                  separatorBuilder: (context, index) => const SizedBox(width: 16),
+                  itemBuilder: (context, index) {
+                    // Data dummy untuk performance program
+                    final programs = [
+                      {
+                        "title": "Upper Body Performance Level 2",
+                        "description": "Challenging exercises for arms and shoulders.",
+                        "imagePath": "assets/images/upper_body_performance.jpg", // Ganti dengan path gambar kamu
+                      },
+                      {
+                        "title": "Lower Body Performance Level 1",
+                        "description": "Focus on legs and glutes.",
+                        "imagePath": "assets/images/lower_body_performance.jpg", // Ganti dengan path gambar kamu
+                      },
+                      {
+                        "title": "Full Body Performance Level 3",
+                        "description": "Ultimate challenge for your entire body.",
+                        "imagePath": "assets/images/full_body_performance.jpg", // Ganti dengan path gambar kamu
+                      },
+                    ];
+
+                    final program = programs[index];
+
+                    return Container(
+                      width: 160,
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(16),
+                        border: Border.all(color: const Color(0xFF3A9D4E).withOpacity(0.3)),
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.grey.withOpacity(0.1),
+                            spreadRadius: 2,
+                            blurRadius: 6,
+                            offset: const Offset(0, 2),
+                          ),
+                        ],
+                      ),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          // Gambar
+                          ClipRRect(
+                            borderRadius: const BorderRadius.vertical(top: Radius.circular(16)),
+                            child: Container(
+                              height: 120,
+                              decoration: BoxDecoration(
+                                color: Colors.grey[300],
+                                image: DecorationImage(
+                                  image: AssetImage(program["imagePath"]!),
+                                  fit: BoxFit.cover,
+                                ),
+                              ),
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.all(12.0),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  program["title"]!,
+                                  style: const TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 16,
+                                    color: Color(0xFF3A9D4E),
+                                  ),
+                                  maxLines: 2,
+                                  overflow: TextOverflow.ellipsis,
+                                ),
+                                const SizedBox(height: 4),
+                                Text(
+                                  program["description"]!,
+                                  style: const TextStyle(
+                                    fontSize: 12,
+                                    color: Colors.grey,
+                                  ),
+                                  maxLines: 2,
+                                  overflow: TextOverflow.ellipsis,
+                                ),
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
+                    );
+                  },
+                ),
+              ),
             ],
           ),
         ),
@@ -152,7 +259,7 @@ class ProgramsPage extends StatelessWidget {
       onTap: () {
         // Nanti kita isi fungsi navigasi ke halaman program spesifik
         print("Pilih program untuk $title");
-        // TODO: Navigasi ke halaman detail program
+        // TODO: Nanti tambahkan navigasi ke halaman detail program
       },
       child: Card(
         elevation: 4, // Bayangan card
