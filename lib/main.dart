@@ -4,6 +4,7 @@ import 'package:video_player/video_player.dart';
 import 'dart:async'; // Tambahkan ini untuk Timer
 import 'workouts_page.dart'; // Tambahkan ini
 import 'login_page.dart'; // Tambahkan ini
+import 'profile_page.dart'; // Tambahkan ini
 
 
 // Import halaman Programs dari file terpisah
@@ -194,48 +195,58 @@ class _MyHomePageState extends State<MyHomePage> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               // === HEADER SECTION ===
-              Row(
-                children: [
-                  // Avatar Placeholder (Bisa diganti dengan foto profil nanti)
-                  Container(
-                    width: 60,
-                    height: 60,
-                    decoration: BoxDecoration(
-                      color: Colors.grey[300],
-                      borderRadius: BorderRadius.circular(12),
-                      image: const DecorationImage(
-                        image: AssetImage('assets/images/video_placeholder.jpg'), // Bisa diganti dengan avatar user
-                        fit: BoxFit.cover,
-                      ),
-                    ),
+              // === HEADER SECTION ===
+  Row(
+  children: [
+    // Avatar Placeholder (Bisa diganti dengan foto profil nanti)
+    Container(
+      width: 60,
+      height: 60,
+      decoration: BoxDecoration(
+        color: Colors.grey[300],
+        borderRadius: BorderRadius.circular(12),
+        image: const DecorationImage(
+          image: AssetImage('assets/images/video_placeholder.jpg'), // Bisa diganti dengan avatar user
+          fit: BoxFit.cover,
+        ),
+      ),
+    ),
+    const SizedBox(width: 12),
+    Expanded(
+      child: GestureDetector( // Tambahkan GestureDetector untuk membuatnya bisa diklik
+        onTap: () {
+          // Navigasi ke halaman ProfilePage
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => const ProfilePage()),
+          );
+        },
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              "Welcome back,",
+              style: Theme.of(context).textTheme.bodySmall?.copyWith(color: Colors.grey[600]),
+            ),
+            Text(
+              userName, // Nama user
+              style: Theme.of(context).textTheme.headlineSmall?.copyWith(
+                    fontWeight: FontWeight.bold,
+                    color: const Color(0xFF3A9D4E),
                   ),
-                  const SizedBox(width: 12),
-                  Expanded(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          "Welcome back,",
-                          style: Theme.of(context).textTheme.bodySmall?.copyWith(color: Colors.grey[600]),
-                        ),
-                        Text(
-                          userName, // Nama user
-                          style: Theme.of(context).textTheme.headlineSmall?.copyWith(
-                                fontWeight: FontWeight.bold,
-                                color: const Color(0xFF3A9D4E),
-                              ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  IconButton(
-                    icon: const Icon(Icons.notifications_none, color: Color(0xFF3A9D4E)),
-                    onPressed: () {
-                      print("Notifikasi diklik");
-                    },
-                  ),
-                ],
-              ),
+            ),
+          ],
+        ),
+      ),
+    ),
+    IconButton(
+      icon: const Icon(Icons.notifications_none, color: Color(0xFF3A9D4E)),
+      onPressed: () {
+        print("Notifikasi diklik");
+      },
+    ),
+  ],
+),
               const SizedBox(height: 24),
 
               // === CAROUSEL SECTION ===
