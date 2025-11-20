@@ -195,7 +195,7 @@ class WorkoutsPage extends StatelessWidget {
             case 1: // Jika tombol Programs (index 1) diklik
               Navigator.pushReplacement(
                 context,
-                MaterialPageRoute(builder: (context) => const ProgramsPage()),
+                MaterialPageRoute(builder: (context) =>  ProgramsPage()),
               );
               break;
             case 2: // Jika tombol Workouts (index 2) diklik
